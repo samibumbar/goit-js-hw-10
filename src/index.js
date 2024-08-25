@@ -1,5 +1,4 @@
 import process from 'process';
-
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 
 const breedSelect = document.getElementById('breed-select');
@@ -49,27 +48,34 @@ function loadCatByBreed(breedId) {
   fetchCatByBreed(breedId)
     .then(catData => {
       catImage.src = catData.url;
+      catImage.onload = function () {
+        hideLoader();
+        catInfo.classList.remove('hidden');
+      };
+      catImage.onerror = function () {
+        showError();
+      };
       catBreed.textContent = catData.breeds[0].name;
       catDescription.textContent = catData.breeds[0].description;
       catTemperament.textContent = `Temperament: ${catData.breeds[0].temperament}`;
-      catInfo.classList.remove('hidden');
     })
     .catch(() => {
       showError();
-    })
-    .finally(() => {
-      hideLoader();
     });
 }
 
 function showLoader() {
   loader.classList.remove('hidden');
+  breedSelect.classList.add('hidden');
+  catInfo.classList.add('hidden');
 }
 
 function hideLoader() {
   loader.classList.add('hidden');
+  breedSelect.classList.remove('hidden');
 }
 
 function showError() {
+  hideLoader();
   errorElement.classList.remove('hidden');
 }
