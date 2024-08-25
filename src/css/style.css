@@ -26,6 +26,9 @@ body {
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+.breed-select:focus {
+  background-color: #d3d3d3;
+}
 .hidden {
   display: none;
 }
