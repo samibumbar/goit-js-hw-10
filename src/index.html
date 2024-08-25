@@ -3,14 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+
     <title>Homework 10</title>
   </head>
   <body>
-    <select class="breed-select"></select>
-    <p class="loader">Loading data, please wait...</p>
-    <p class="error">Oops! Something went wrong! Try reloading the page!</p>
-    <div class="cat-info"></div>
+    <div class="container">
+      <!-- Dropdown to select breed -->
+      <select id="breed-select" class="breed-select"></select>
 
+      <!-- Loader displayed during API requests -->
+      <div class="loader loader-inner ball-pulse hidden">
+        Loading data, please wait...
+      </div>
+
+      <!-- Cat information section -->
+      <div class="cat-info hidden">
+        <img id="cat-image" alt="Cat Image" />
+        <div class="cat-info-item">
+          <h2 id="cat-breed"></h2>
+          <p id="cat-description"></p>
+          <p id="cat-temperament"></p>
+        </div>
+      </div>
+
+      <!-- Error message -->
+      <p class="error hidden">Failed to load data. Please try again later.</p>
+    </div>
     <script src="index.js" type="module"></script>
   </body>
 </html>
